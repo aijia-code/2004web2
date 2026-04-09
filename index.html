@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ambient Soundscape Mixer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="bg-layer" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="grain"></div>
+  </div>
+
+  <main class="app" role="main">
+    <header class="header">
+      <div class="header-left">
+        <h1 class="logo">Soundscape</h1>
+        <p class="tagline">Weather-aware ambient audio</p>
+      </div>
+      <div class="weather-pill" id="weather-pill" aria-live="polite">
+        <span class="weather-icon" id="wx-icon" aria-hidden="true">◌</span>
+        <div class="weather-text">
+          <span class="weather-condition" id="wx-condition">Detecting location…</span>
+          <span class="weather-detail" id="wx-detail"></span>
+        </div>
+        <span class="weather-status" id="wx-status">—</span>
+      </div>
+    </header>
+    <section class="viz-section" aria-label="Audio waveform visualizer">
+      <canvas id="viz-canvas" aria-hidden="true"></canvas>
+      <div class="viz-label" id="viz-label">Press play to begin</div>
+    </section>
+    <section class="master-controls" aria-label="Master playback controls">
+      <button class="play-btn" id="play-btn" aria-pressed="false">
+        <span class="play-icon" aria-hidden="true"></span>
+        <span id="play-label">Play</span>
+      </button>
+      <div class="master-vol">
+        <label for="master-vol-slider" class="vol-label">Master volume</label>
+        <input type="range" id="master-vol-slider" min="0" max="100" value="75" step="1" />
+        <span class="vol-readout" id="master-vol-readout">75%</span>
+      </div>
+    </section>
+    <section class="tracks-section" aria-label="Sound tracks">
+      <h2 class="section-title">Tracks</h2>
+      <div class="tracks-grid" id="tracks-grid"></div>
+    </section>
+    <section class="focus-section" aria-label="Focus timer">
+      <h2 class="section-title">Focus Timer</h2>
+      <div class="focus-card">
+        <div class="timer-display" aria-live="polite">
+          <span id="timer-digits">25:00</span>
+          <span class="timer-status" id="timer-status">Select a duration below</span>
+        </div>
+        <div class="timer-presets" role="group">
+          <button class="preset-btn" data-min="5">5 min</button>
+          <button class="preset-btn" data-min="15">15 min</button>
+          <button class="preset-btn active" data-min="25">25 min</button>
+          <button class="preset-btn" data-min="45">45 min</button>
+          <button class="preset-btn" data-min="60">60 min</button>
+        </div>
+        <div class="timer-actions">
+          <button class="timer-btn" id="timer-btn">Start</button>
+          <button class="timer-reset-btn" id="timer-reset-btn">Reset</button>
+        </div>
+        <div class="timer-bar-wrap" aria-hidden="true">
+          <div class="timer-bar" id="timer-bar" style="width:100%"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
